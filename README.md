@@ -2,4 +2,4 @@
 Me, learning Rust in 15 minute blocks
 
 ## 2022-09-30
-Hello world
+Hello world and some formatted printing
