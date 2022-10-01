@@ -19,5 +19,38 @@ fn main() {
     println!("Base 16 (x) (hexadecimal) repr:  {:x}", 69420);
     println!("Base 16 (X) (hexadecimal) repr:  {:X}", 69420);
 
-    // https://doc.rust-lang.org/stable/rust-by-example/hello/print.html
+    // You can right-align text with a specified width. This will output
+    // "    1". 4 white spaces and a "1", for a total width of 5.
+    println!("{number:>5}", number=1);
+
+    // You can pad numbers with extra zeroes. This will output "00001".
+    println!("{number:0>5}", number=1);
+
+    // You can use named arguments in the format specifier by appending a `$`
+    println!("{number:0>width$}", number=1, width=8);
+
+    // Rust even checks to make sure the correct number of arguments are
+    // used.
+    // println!("My name is {0}, {1} {0}", "Bond");
+    println!("My name is {0}, {1} {0}", "Bond", "James");
+
+    // Only types that implement fmt::Display can be formatted with `{}`. User-
+    // defined types do not implement fmt::Display by default
+
+    #[allow(dead_code)]
+    struct Structure(i32);
+
+    // This will not compile because `Structure` does not implement
+    // fmt::Display
+    // println!("This struct `{}` won't print...", Structure(3));
+
+    // For Rust 1.58 and above, you can directly capture the argument from a
+    // surrounding variable. Just like the above, this will output
+    // "     1". 5 white spaces and a "1".
+    let number: f64 = 1.0;
+    let width: usize = 5;
+    println!("{number:>width$}");
+
+    let pi = 3.141592;
+    println!("Pi is roughly {pi:.0$}", 3);
 }
